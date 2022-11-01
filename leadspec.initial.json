@@ -1,0 +1,87 @@
+{
+    "name": "IRTX JSprit to COPERT connector",
+    "description":"This model is a connector between the upstream JSprit model and the downstream COPERT model for emissions analysis.",
+    "version": "1.0.0",
+    "status":"draft",
+    "types": [
+        {"name": "Connector", "description":"???"}
+    ],
+    "dockerImage":"???",
+    "url": "https://github.com/Horizon-LEAD/irtx-jsprit-copert-connector",
+    "modelData":  [
+        {
+            "name": "Configuration path",
+            "variableName": "configuration_path",
+            "description": "Path to the conversion configuration file",
+            "isOutput": false,
+            "isOutputDir": false,
+            "isOptional": false,
+            "inputType": "CLI",
+            "chartType": "NONE",
+            "modelDataType": {
+                "name": "file",
+                "dataType": "file",
+                "extension": "json"
+            }
+        },
+        {
+            "name": "Scenario path",
+            "variableName": "scenario_path",
+            "description": "Path to the JSprit scenario definition file",
+            "isOutput": false,
+            "isOutputDir": false,
+            "isOptional": false,
+            "inputType": "CLI",
+            "chartType": "NONE",
+            "modelDataType": {
+                "name": "file",
+                "dataType": "file",
+                "extension": "json"
+            }
+        },
+        {
+            "name": "Solution path",
+            "variableName": "solution_path",
+            "description": "Path to the JSprit solution file",
+            "isOutput": false,
+            "isOutputDir": false,
+            "isOptional": false,
+            "inputType": "CLI",
+            "chartType": "NONE",
+            "modelDataType": {
+                "name": "file",
+                "dataType": "file",
+                "extension": "json"
+            }
+        },
+        {
+            "name": "Output path",
+            "variableName": "output_path",
+            "description": "Path where the COPERT data will be saved",
+            "isOutput": true,
+            "isOutputDir": false,
+            "isOptional": false,
+            "inputType": "CLI",
+            "chartType": "NONE",
+            "modelDataType": {
+                "name": "file",
+                "dataType": "file",
+                "extension": "xlsx"
+            }
+        },
+        {
+            "name": "Year",
+            "variableName": "year",
+            "description": "Year for which the information is written in the COPERT file",
+            "isOutput": false,
+            "isOutputDir": false,
+            "isOptional": true,
+            "inputType": "CLI",
+            "chartType": "NONE",
+            "modelDataType": {
+                "name": "int",
+                "dataType": "int"
+            }
+        }
+    ]
+}
