@@ -1,5 +1,12 @@
 set -e
 
+## Prepare
+cd /home/ubuntu/irtx-jsprit-copert-connector
+mkdir /home/ubuntu/irtx-jsprit-copert-connector/output
+
+## Create environment
+conda env create -f environment.yml -n jsprit2copert
+
 ## Activate environment
 conda activate jsprit2copert
 
