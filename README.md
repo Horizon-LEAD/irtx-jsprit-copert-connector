@@ -1,9 +1,5 @@
 # IRTX JSprit to COPERT connector
 
-## TODO
-
-- Test input and output data
-
 ## Introduction
 
 This model is a connector between the upstream JSprit model and the downstream
@@ -84,7 +80,7 @@ follows:
 Here, an example for the `van` JSprit vehicle type is given. It is mapped to a
 light vehicle emissions class for Diesel with a specified fuel tank size.
 
-# Running the model
+## Running the model
 
 The model is defined in a Jupyter notebook called `Convert.ipynb`. To run it,
 call it through the `papermill` command line utility (which is installed as a
@@ -110,20 +106,22 @@ Parameter             | Values                            | Description
 
 The following **optional** parameter is available:
 
+Parameter             | Values                            | Description
+---                   | ---                               | ---
 `year`     | Integer (default `2022`)                     | Year for which the information is written in the COPERT file
 
 ## Standard scenarios
 
 For the Lyon living lab, a configuration file has already been prepared in
-`data/lyon_configuration.json`. It can be used to prepare COPERT data for the
+`data/configuration_lyon.json`. It can be used to prepare COPERT data for the
 three main scenarios (Baseline 2022, UCC 2022, UCC 2030) as follows:
 
 ```bash
 papermill "Convert.ipynb" /dev/null \
-  -pconfiguration_path data/lyon_configuration.json \
+  -pconfiguration_path data/configuration_lyon.json \
   -pscenario_path /path/to/irtx-jsprit/output/scenario_{scenario}.json \
   -psolution_path /path/to/irtx-jsprit/output/solution_{scenario}.json \
-  -poutput_path output/copert_{scenario}.xlsx \
+  -poutput_path /path/to/irtx-jsprit-copert-connector/output/copert_{scenario}.xlsx \
   -pyear {year}
 ```
 
