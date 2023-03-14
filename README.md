@@ -127,3 +127,16 @@ papermill "Convert.ipynb" /dev/null \
 
 Here, `{scenario} = baseline_2022 | ucc_2022 | ucc_2030` and `year = 2022 | 2030`
 according to the respective scenario.
+
+### Examples
+
+```
+docker run --rm \
+  -v ${PWD}/sample-data:/data \
+  jsprit2copert:latest \
+  /data/input/configuration.json \
+  /data/input/scenario.json \
+  /data/input/solution.json \
+  2023 \ 
+  /data/output
+```
