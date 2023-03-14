@@ -65,8 +65,20 @@ OUT_PATH=${leftovers[4]}
 ##############################################################################
 # Input checks                                                               #
 ##############################################################################
-if [ ! -d "${OUT_PATH}" ]; then
-     echo -e "Give a ${BOLD}valid${NORM} output directory\n"; show_usage; exit 1
+if [ ! -d "${CONF_FILE}" ]; then
+     echo -e "Give a ${BOLD}valid${NORM} path to the conversion configuration file\n"; show_usage; kill -INT $$
+fi
+if [ ! -f "${SCENARIO}" ]; then
+    echo -e "Give a ${BOLD}valid${NORM} Path to the JSprit scenario definition file\n"; show_usage; kill -INT $$
+fi
+if [ ! -f "${SOLUTION}" ]; then
+    echo -e "Give a ${BOLD}valid${NORM} Path to the JSprit solution file\n"; show_usage; kill -INT $$
+fi
+if [ ! -f "${YEAR}" ]; then
+    echo -e "Give a ${BOLD}valid${NORM} Year\n"; show_usage; kill -INT $$
+fi
+if [ ! -f "${OUT_PATH}" ]; then
+    echo -e "Give a ${BOLD}valid${NORM} output directory\n"; show_usage; kill -INT $$
 fi
 
 ##############################################################################
