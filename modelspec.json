@@ -4,14 +4,14 @@
     "version": "1.0.0",
     "status":"draft",
     "types": [
-        {"name": "Connector", "description":"???"}
+        {"name": "Connector", "description":"Description"}
     ],
-    "dockerImage":"???",
+    "dockerImage":"egistry.gitlab.com/inlecom/lead/models/jsprit-2-copert:latest",
     "url": "https://github.com/Horizon-LEAD/irtx-jsprit-copert-connector",
     "modelData":  [
         {
             "name": "Configuration path",
-            "variableName": "configuration_path",
+            "variableName": "CONF_FILE",
             "description": "Path to the conversion configuration file",
             "isOutput": false,
             "isOutputDir": false,
@@ -26,7 +26,7 @@
         },
         {
             "name": "Scenario path",
-            "variableName": "scenario_path",
+            "variableName": "SCENARIO",
             "description": "Path to the JSprit scenario definition file",
             "isOutput": false,
             "isOutputDir": false,
@@ -41,7 +41,7 @@
         },
         {
             "name": "Solution path",
-            "variableName": "solution_path",
+            "variableName": "SOLUTION",
             "description": "Path to the JSprit solution file",
             "isOutput": false,
             "isOutputDir": false,
@@ -55,32 +55,56 @@
             }
         },
         {
-            "name": "Output path",
-            "variableName": "output_path",
-            "description": "Path where the COPERT data will be saved",
-            "isOutput": true,
+            "name": "Year",
+            "variableName": "YEAR",
+            "description": "Year for which the information is written in the COPERT file",
+            "isOutput": false,
             "isOutputDir": false,
             "isOptional": false,
             "inputType": "CLI",
             "chartType": "NONE",
             "modelDataType": {
-                "name": "file",
-                "dataType": "file",
-                "extension": "xlsx"
+                "name": "int",
+                "dataType": "int"
             }
         },
         {
-            "name": "Year",
-            "variableName": "year",
-            "description": "Year for which the information is written in the COPERT file",
+            "name": "Output path",
+            "variableName": "OUT_PATH",
+            "description": "Path where the COPERT data will be saved",
             "isOutput": false,
-            "isOutputDir": false,
-            "isOptional": true,
+            "isOutputDir": true,
+            "isOptional": false,
             "inputType": "CLI",
             "chartType": "NONE",
             "modelDataType": {
-                "name": "int",
-                "dataType": "int"
+                "name": "string",
+                "description": "",
+                "dataType": "string",
+                "extension": null,
+                "validators": [
+                    {
+                        "name": "required",
+                        "description": "required",
+                        "validatorType": "required",
+                        "value": ""
+                    }
+                ],
+                "objectKeys": []
+            }
+        },
+        {
+            "name": "Copert Output EXCEL file",
+            "variableName": "copert",
+            "description": "file for Copert Input",
+            "isOutput": true,
+            "isOutputDir": false,
+            "isOptional": false,
+            "chartType": "NONE",
+            "modelDataType": {
+                "name": "file",
+                "dataType": "file",
+                "extension": "xlsx"
             }
         }
     ]
