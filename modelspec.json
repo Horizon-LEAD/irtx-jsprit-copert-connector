@@ -3,10 +3,7 @@
     "description":"This model is a connector between the upstream JSprit model and the downstream COPERT model for emissions analysis.",
     "version": "1.0.0",
     "status":"draft",
-    "types": [
-        {"name": "Connector", "description":"Description"}
-    ],
-    "dockerImage":"egistry.gitlab.com/inlecom/lead/models/jsprit-2-copert:latest",
+    "dockerImage":"registry.gitlab.com/inlecom/lead/models/jsprit-2-copert:latest",
     "url": "https://github.com/Horizon-LEAD/irtx-jsprit-copert-connector",
     "modelData":  [
         {
@@ -64,8 +61,8 @@
             "inputType": "CLI",
             "chartType": "NONE",
             "modelDataType": {
-                "name": "int",
-                "dataType": "int"
+                "name": "number",
+                "dataType": "number"
             }
         },
         {
@@ -76,7 +73,6 @@
             "isOutputDir": true,
             "isOptional": false,
             "inputType": "CLI",
-            "chartType": "NONE",
             "modelDataType": {
                 "name": "string",
                 "description": "",
