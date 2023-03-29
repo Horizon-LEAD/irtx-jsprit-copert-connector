@@ -73,6 +73,7 @@
             "isOutputDir": true,
             "isOptional": false,
             "inputType": "CLI",
+            "chartType": "NONE",
             "modelDataType": {
                 "name": "string",
                 "description": "",
