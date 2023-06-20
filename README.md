@@ -131,12 +131,16 @@ according to the respective scenario.
 ### Examples
 
 ```
+docker build -t jsprit-2-matsim-irtx:latest .
+```
+
+```
 docker run --rm \
-  -v ${PWD}/sample-data:/data \
-  jsprit2copert:latest \
+  -v ./sample-data:/data \
+  jsprit-2-matsim-irtx:latest \
   /data/input/configuration.json \
   /data/input/scenario.json \
   /data/input/solution.json \
-  2023 \ 
+  2022 \
   /data/output
 ```
