@@ -8,18 +8,18 @@ REV=`tput smso`
 CURDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
 function show_usage () {
-    echo -e "${BOLD}Basic usage:${NORM} entrypoint.sh [-vh] FIN_PERSONS FIN_HOMES SEED SCALING OUT_PATH"
+    echo -e "${BOLD}Basic usage:${NORM} entrypoint.sh [-vh] FIN_CONF FIN_SCENARIO FIN_SOLUTION YEAR OUT_PATH"
 }
 
 function show_help () {
-    echo -e "${BOLD}eentrypoint.sh${NORM}: Runs the Parcels Model"\\n
+    echo -e "${BOLD}entrypoint.sh${NORM}: Runs the jsprit-2-copert model"\\n
     show_usage
     echo -e "\n${BOLD}Required arguments:${NORM}"
     echo -e "${REV}CONF_FILE${NORM}\t the configuration json file"
-    echo -e "${REV}SCENARIO${NORM}\t the jsprit scenario file"
-    echo -e "${REV}SOLUTION${NORM}\t the jsprit solution file"
-    echo -e "${REV}YEAR${NORM}\t the year to be used"
-    echo -e "${REV}OUT_PATH${NORM}\t the output path"
+    echo -e "${REV}SCENARIO${NORM} \t the jsprit scenario file"
+    echo -e "${REV}SOLUTION${NORM} \t the jsprit solution file"
+    echo -e "${REV}YEAR${NORM}     \t the year to be used"
+    echo -e "${REV}OUT_PATH${NORM} \t the output path"
     echo -e "${BOLD}Optional arguments:${NORM}"
     echo -e "${REV}-v${NORM}\tSets verbosity level"
     echo -e "${REV}-h${NORM}\tShows this message"
@@ -42,14 +42,14 @@ while getopts 'hv' OPTION; do
     case "$OPTION" in
         h)
             show_help
-            kill -INT $$
+            exit 1
             ;;
         v)
             verbose=1
             ;;
         ?)
             show_usage >&2
-            kill -INT $$
+            exit 1
             ;;
     esac
 done
@@ -67,22 +67,32 @@ OUT_PATH=${leftovers[4]}
 # Input checks                                                               #
 ##############################################################################
 if [ ! -f "${CONF_FILE}" ]; then
-     echo -e "Give a ${BOLD}valid${NORM} path to the conversion configuration file\n"; show_usage; kill -INT $$
+    echo -e "Give a ${BOLD}valid${NORM} path to the conversion configuration file\n${CONF_FILE}";
+    show_usage;
+    exit 1;
 fi
 if [ ! -f "${SCENARIO}" ]; then
-    echo -e "Give a ${BOLD}valid${NORM} Path to the JSprit scenario definition file\n"; show_usage; kill -INT $$
+    echo -e "Give a ${BOLD}valid${NORM} Path to the JSprit scenario definition file\n${SCENARIO}";
+    show_usage;
+    exit 1
 fi
 if [ ! -f "${SOLUTION}" ]; then
-    echo -e "Give a ${BOLD}valid${NORM} Path to the JSprit solution file\n"; show_usage; kill -INT $$
+    echo -e "Give a ${BOLD}valid${NORM} Path to the JSprit solution file\n${SOLUTION}";
+    show_usage;
+    exit 1
 fi
 
-if [ ! -f "${OUT_PATH}" ]; then
-    echo -e "Give a ${BOLD}valid${NORM} output directory\n"; show_usage; kill -INT $$
+if [ ! -d "${OUT_PATH}" ]; then
+    echo -e "Give a ${BOLD}valid${NORM} output directory\n${OUT_PATH}";
+    show_usage;
+    exit 1;
 fi
 
 ##############################################################################
 # Execution                                                                  #
 ##############################################################################
+[ $verbose -eq 1 ] && echo "Starting model execution"
+
 papermill ${CURDIR}/Convert.ipynb /dev/null \
   -pconfiguration_path ${CONF_FILE} \
   -pscenario_path ${SCENARIO} \
